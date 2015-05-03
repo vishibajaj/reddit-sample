@@ -8,19 +8,17 @@
 			 <div class: "post_votes_section"> 
 				<% if @vote_value == true %>
 					
-					<p> inside if == true </p>
 					<span id = "span_true">
 						<%= link_to_if(!(@vote_value == true), "Vote Up",'#', class: "post_vote", id: "post_vote_up", value: true, style: 'background-color:#FFFFFF;') %>
 						<%= link_to "Vote Down","#",  class: "post_vote", id: "post_vote_down", value: false%>
 					</span>
 				<% elsif @vote_value == false %>
-					<p> inside if == false </p>
+					
 					<span id = "span_false">				
 						<%= link_to "Vote Up","#", class: "post_vote", id: "post_vote_up",value: true %>    
 						<%= link_to_if(!(@vote_value == false), "Vote Down", class: "post_vote", id: "post_vote_down", value: false )%>
 					</span>
 				<% else %>
-				<p> inside if == else </p>
 						<%= link_to "Vote Up","#", class: "post_vote", id: "post_vote_up",value: true %>    
 						<%= link_to "Vote Down","#",  class: "post_vote", id: "post_vote_down", value: false%>
 				<% end %>

@@ -69,11 +69,8 @@ class PostsController < ApplicationController
 		
 		#find if user has already commeted on that post updte that value don't create a new one.
 
-		p "current_user"
-		p current_user.id
-		p PostVote.find_by_post_id(params[:post_id])
-		p PostVote.find_by_user_id(current_user.id)
-		p "current_user end"
+	
+		
 		if (PostVote.where(user_id: current_user.id, post_id: params[:post_id]).length > 0)
 			@postvote = PostVote.where(post_id: params[:post_id], user_id: current_user.id).first
 			@postvote.update(post_vote_value: params[:post_vote_value])
