@@ -1,0 +1,46 @@
+<%= link_to "HOME", root_path %><br><br>
+<div id = "post_content" >
+	<h3>Post</h3>
+	Title: <%= @post.title %> <br>
+	Content: <%= @post.content %><br>
+	 <%= content_tag "div", id: "post_vote_value_section", data: {postid: @post.id} do %>
+			<span id="post_vote_value"> <%= @post_vote_value %> </span><br>
+			 <div class: "post_votes_section"> 
+				<% if @vote_value == true %>
+					
+					<p> inside if == true </p>
+					<span id = "span_true">
+						<%= link_to_if(!(@vote_value == true), "Vote Up",'#', class: "post_vote", id: "post_vote_up", value: true, style: 'background-color:#FFFFFF;') %>
+						<%= link_to "Vote Down","#",  class: "post_vote", id: "post_vote_down", value: false%>
+					</span>
+				<% elsif @vote_value == false %>
+					<p> inside if == false </p>
+					<span id = "span_false">				
+						<%= link_to "Vote Up","#", class: "post_vote", id: "post_vote_up",value: true %>    
+						<%= link_to_if(!(@vote_value == false), "Vote Down", class: "post_vote", id: "post_vote_down", value: false )%>
+					</span>
+				<% else %>
+				<p> inside if == else </p>
+						<%= link_to "Vote Up","#", class: "post_vote", id: "post_vote_up",value: true %>    
+						<%= link_to "Vote Down","#",  class: "post_vote", id: "post_vote_down", value: false%>
+				<% end %>
+			</div>
+	<% end %> 
+</div>
+
+	 <div class ="comments_content">
+		<h3>Comments</h3>
+
+		<%=  render @comments %>
+	</div> 
+
+	<div id="comment_create_section">
+		<h3>Post a Comment</h3>
+		<%= form_for [@post,@post.comments.new], class: "create_comment", remote: true do |f| %>
+		<p>
+		<%= f.label :comment_content, "New comment" %><br/>
+		<%= f.text_area :comment_content, id: "comment_text_area" %>
+		</p>
+		<p><%= f.submit "Add comment", class: "comment_submit" %></p> 
+		<% end %>
+	</div>

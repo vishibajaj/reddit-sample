@@ -1,0 +1,5 @@
+<li id="tr_<%= comment.id%>" > 
+		<%= current_user.name  %> Commented 
+		<span class="date"><%= time_ago_in_words(comment.created_at)%> ago </span>
+      <p> <%=comment.comment_content %> </p>    
+</li>
